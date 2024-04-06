@@ -102,16 +102,17 @@ def fetch_data(start_date, end_date):
 
 # Main Execution
 
-# Initialize the workbook and sheet
-wb = xw.Book(CONFIG['ledger_filename'])
-sheet = wb.sheets[CONFIG['market_data_sheet']]
-start_date, end_date = pd.to_datetime(sheet.range("start_date").value), pd.to_datetime(sheet.range("end_date").value)
+def main():
+    # Initialize the workbook and sheet
+    wb = xw.Book(CONFIG['ledger_filename'])
+    sheet = wb.sheets[CONFIG['market_data_sheet']]
+    start_date, end_date = pd.to_datetime(sheet.range("start_date").value), pd.to_datetime(sheet.range("end_date").value)
 
-# Fetch and combine data from all configured sources
-data = fetch_data(start_date, end_date)
-data.index.name="Date"
+    # Fetch and combine data from all configured sources
+    data = fetch_data(start_date, end_date)
+    data.index.name="Date"
 
-# # Write the data back to the Excel sheet
-sheet.range('D:H').clear_contents()
-sheet.range('D1').value = data
-sheet.autofit()
+    # # Write the data back to the Excel sheet
+    sheet.range('D:ZZ').clear_contents()
+    sheet.range('D1').value = data
+    sheet.autofit()
