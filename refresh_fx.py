@@ -89,8 +89,8 @@ def fetch_data(start_date, end_date):
     """Fetch all configured data within the specified date range."""
     dfs = []
     # Fetch yfinance data
-    for identifier in CONFIG['data_sources']['yfinance']['types']:
-        dfs.append(fetch_yfinance_data(identifier, start_date, end_date))
+    # for identifier in CONFIG['data_sources']['yfinance']['types']:
+    #     dfs.append(fetch_yfinance_data(identifier, start_date, end_date))
     # Fetch Banco Central data
     for data_type in CONFIG['data_sources']['bcentral']['types']:
         u = []
@@ -116,3 +116,6 @@ def main():
     sheet.range('D:ZZ').clear_contents()
     sheet.range('D1').value = data
     sheet.autofit()
+
+
+main()
